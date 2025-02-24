@@ -1,0 +1,1 @@
+# Exo-graphql-rick-morty
