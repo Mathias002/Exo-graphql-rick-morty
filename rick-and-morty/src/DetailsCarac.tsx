@@ -39,6 +39,9 @@ query GetDetails($id: ID!) {
 
 function DisplayDetails() {
   const { id } = useParams(); // Récupérer l'ID depuis l'URL
+
+  if(!id) throw new Error('id is not defined in DetailsPage');
+
   const { loading, error, data } = useQuery(GET_DETAILS_CARAC, {
     variables: { id }, // Passer l'ID en tant que variable
   });
@@ -46,16 +49,23 @@ function DisplayDetails() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
+  if (error || !data?.character){
+    return <div>character not found</div>
+  }
+
+  const {name, image, status, species, gender} = data.character
+  const originName = data.character.origin?.name
+  const locationName = data.character.location?.name
 
   return (
     <div>
-      <h1>{data.character.name}</h1>
-      <img src={data.character.image} alt={data.character.name} />
-      <p>Status: {data.character.status}</p>
-      <p>Espèce: {data.character.species}</p>
-      <p>Genre: {data.character.gender}</p>
-      <p>Origine: {data.character.origin.name}</p>
-      <p>Localisation: {data.character.location.name}</p>
+      <h1>{name}</h1>
+      <img src={image ?? ''} alt={name ?? ''} />
+      <p>Status: {status}</p>
+      <p>Espèce: {species}</p>
+      <p>Genre: {gender}</p>
+      <p>Origine: {originName}</p>
+      <p>Localisation: {locationName}</p>
     </div>
   );
 }

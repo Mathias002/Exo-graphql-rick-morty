@@ -9,13 +9,13 @@ export default function App() {
     <div>
       <h2>Rick & Morty list</h2>
       <br/>
-      <DisplayInfos />
+      <DisplayList />
     </div>
   );
 }
 
 const GET_LIST_CARAC = graphql(`
-  query GetInfos {
+  query GetLists {
   characters{
     __typename
     info {
@@ -34,16 +34,22 @@ const GET_LIST_CARAC = graphql(`
 }
 `);
 
-function DisplayInfos() {
+function DisplayList() {
   const { loading, error, data } = useQuery(GET_LIST_CARAC);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
-  return data?.characters?.results?.map(({id, name, image}  ) =>
+  if (error || !data?.characters?.results){
+    return <div>error</div>
+  }
+
+  const characters = data.characters.results.filter(el => el !== null);
+
+  return characters.map(({id, name, image}  ) =>
     <Link to={`/details/${id}`} key={id}>
       <h3>{name}</h3>
-      <img width="400" height="250" alt="location-reference" src={image} />
+      <img width="400" height="250" alt={name ?? ''} src={image ?? ''} />
     </Link>
-  );
+  ).filter(el => el !== null);
 }

@@ -14,11 +14,11 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n  query GetInfos {\n  characters{\n    __typename\n    info {\n      count\n      pages\n      next\n      prev\n    }\n    results {\n      __typename\n      id\n      name\n      image\n    }\n  }\n}\n": typeof types.GetInfosDocument,
+    "\n  query GetLists {\n  characters{\n    __typename\n    info {\n      count\n      pages\n      next\n      prev\n    }\n    results {\n      __typename\n      id\n      name\n      image\n    }\n  }\n}\n": typeof types.GetListsDocument,
     "\nquery GetDetails($id: ID!) {\n  character(id: $id){\n    __typename\n    id\n    name\n    status\n    species\n    gender\n    origin {\n      __typename\n      id\n      name\n    }\n    location {\n      __typename\n      id\n      name\n    }\n    image\n  }\n}\n": typeof types.GetDetailsDocument,
 };
 const documents: Documents = {
-    "\n  query GetInfos {\n  characters{\n    __typename\n    info {\n      count\n      pages\n      next\n      prev\n    }\n    results {\n      __typename\n      id\n      name\n      image\n    }\n  }\n}\n": types.GetInfosDocument,
+    "\n  query GetLists {\n  characters{\n    __typename\n    info {\n      count\n      pages\n      next\n      prev\n    }\n    results {\n      __typename\n      id\n      name\n      image\n    }\n  }\n}\n": types.GetListsDocument,
     "\nquery GetDetails($id: ID!) {\n  character(id: $id){\n    __typename\n    id\n    name\n    status\n    species\n    gender\n    origin {\n      __typename\n      id\n      name\n    }\n    location {\n      __typename\n      id\n      name\n    }\n    image\n  }\n}\n": types.GetDetailsDocument,
 };
 
@@ -39,7 +39,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query GetInfos {\n  characters{\n    __typename\n    info {\n      count\n      pages\n      next\n      prev\n    }\n    results {\n      __typename\n      id\n      name\n      image\n    }\n  }\n}\n"): (typeof documents)["\n  query GetInfos {\n  characters{\n    __typename\n    info {\n      count\n      pages\n      next\n      prev\n    }\n    results {\n      __typename\n      id\n      name\n      image\n    }\n  }\n}\n"];
+export function graphql(source: "\n  query GetLists {\n  characters{\n    __typename\n    info {\n      count\n      pages\n      next\n      prev\n    }\n    results {\n      __typename\n      id\n      name\n      image\n    }\n  }\n}\n"): (typeof documents)["\n  query GetLists {\n  characters{\n    __typename\n    info {\n      count\n      pages\n      next\n      prev\n    }\n    results {\n      __typename\n      id\n      name\n      image\n    }\n  }\n}\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
